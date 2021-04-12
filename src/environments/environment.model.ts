@@ -87,11 +87,11 @@ export interface Environment {
   // client-side configuration for identity providers
   identityProviders?: {
     [name: string]:
-      | {
-          type: string;
-          [key: string]: unknown;
-        }
-      | Auth0Config;
+    | {
+      type: string;
+      [key: string]: unknown;
+    }
+    | Auth0Config;
   };
 }
 
@@ -140,4 +140,6 @@ export const ENVIRONMENT_DEFAULTS: Environment = {
     allowedCookies: ['cookieConsent', 'apiToken'],
   },
   cookieConsentVersion: 1,
+  // TODO: to no longer test punchout VALIDATE and SEARCH with mock data the next line needs to be removed once the ICM punchout REST API offers this functionality
+  apiMockPaths: ["warehouses", '^customers/OilCorp/punchouts/oci/(validate|search)'],
 };

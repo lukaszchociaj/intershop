@@ -44,6 +44,11 @@ import {
   getMostRecentlyViewedProducts,
   getRecentlyViewedProducts,
 } from 'ish-core/store/shopping/recently';
+import {
+  getWarehouses,
+  getWarehousesState,
+  loadWarehouses
+} from 'ish-core/store/shopping/warehouses';
 import { getSearchTerm, getSuggestSearchResults, suggestSearch } from 'ish-core/store/shopping/search';
 import { toObservable } from 'ish-core/utils/functions';
 import { whenFalsy, whenTruthy } from 'ish-core/utils/operators';
@@ -51,7 +56,7 @@ import { whenFalsy, whenTruthy } from 'ish-core/utils/operators';
 // tslint:disable:member-ordering
 @Injectable({ providedIn: 'root' })
 export class ShoppingFacade {
-  constructor(private store: Store) {}
+  constructor(private store: Store) { }
 
   // CATEGORY
 
@@ -213,5 +218,16 @@ export class ShoppingFacade {
       this.store.dispatch(loadPromotion({ promoId: promotionId }));
     });
     return this.store.pipe(select(getPromotions(promotionIds)));
+  }
+
+  // WAREHOUSES
+  loadedWarehouses$ = this.store.pipe(select(getWarehousesState));
+
+  warehouses$() {
+    return this.store.pipe(select(getWarehouses));
+  }
+
+  dispatchWarehouses$() {
+    this.store.dispatch(loadWarehouses());
   }
 }

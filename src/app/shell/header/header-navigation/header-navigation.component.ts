@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 
 import { ShoppingFacade } from 'ish-core/facades/shopping.facade';
 import { NavigationCategory } from 'ish-core/models/navigation-category/navigation-category.model';
+import { Warehouse } from 'ish-core/models/warehouse/warehouse.model';
 
 @Component({
   selector: 'ish-header-navigation',
@@ -13,13 +14,16 @@ export class HeaderNavigationComponent implements OnInit {
   @Input() view: 'auto' | 'small' | 'full' = 'auto';
 
   categories$: Observable<NavigationCategory[]>;
+  warehouses$: Observable<Warehouse[]>;
 
   private openedCategories: string[] = [];
 
-  constructor(private shoppingFacade: ShoppingFacade) {}
+  constructor(private shoppingFacade: ShoppingFacade) { }
 
   ngOnInit() {
     this.categories$ = this.shoppingFacade.navigationCategories$();
+    this.shoppingFacade.dispatchWarehouses$();
+    this.warehouses$ = this.shoppingFacade.warehouses$();
   }
 
   /**

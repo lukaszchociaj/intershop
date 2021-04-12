@@ -34,6 +34,14 @@ export function matchCategoryRoute(segments: UrlSegment[]): UrlMatchResult {
   return;
 }
 
+export function matchWarehousesRoute(segments: UrlSegment[]): UrlMatchResult {
+  // compatibility to old routes
+  if (segments && segments[0].path === 'warehouses') {
+    return { consumed: [] };
+  }
+  return;
+}
+
 export function generateCategoryUrl(category: Category): string {
   if (!category) {
     return '/';

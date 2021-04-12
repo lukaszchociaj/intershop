@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { pick } from 'lodash-es';
-
 import { CategoriesEffects } from './categories/categories.effects';
 import { categoriesReducer } from './categories/categories.reducer';
 import { CompareEffects } from './compare/compare.effects';
@@ -11,6 +10,7 @@ import { FilterEffects } from './filter/filter.effects';
 import { filterReducer } from './filter/filter.reducer';
 import { ProductListingEffects } from './product-listing/product-listing.effects';
 import { productListingReducer } from './product-listing/product-listing.reducer';
+import { warehousesReducer } from './warehouses/warehouses.reducer';
 import { ProductsEffects } from './products/products.effects';
 import { productsReducer } from './products/products.reducer';
 import { PromotionsEffects } from './promotions/promotions.effects';
@@ -20,6 +20,7 @@ import { recentlyReducer } from './recently/recently.reducer';
 import { SearchEffects } from './search/search.effects';
 import { searchReducer } from './search/search.reducer';
 import { ShoppingState } from './shopping-store';
+import { WarehousesEffects } from './warehouses/warehouses.effects';
 
 const shoppingReducers: ActionReducerMap<ShoppingState> = {
   categories: categoriesReducer,
@@ -30,6 +31,7 @@ const shoppingReducers: ActionReducerMap<ShoppingState> = {
   filter: filterReducer,
   promotions: promotionsReducer,
   productListing: productListingReducer,
+  warehouses: warehousesReducer,
 };
 
 const shoppingEffects = [
@@ -41,6 +43,7 @@ const shoppingEffects = [
   FilterEffects,
   PromotionsEffects,
   ProductListingEffects,
+  WarehousesEffects
 ];
 
 @NgModule({

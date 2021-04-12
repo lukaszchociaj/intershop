@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { NotFoundStatusGuard } from 'ish-core/guards/not-found-status.guard';
-import { matchCategoryRoute } from 'ish-core/routing/category/category.route';
+import { matchCategoryRoute, matchWarehousesRoute } from 'ish-core/routing/category/category.route';
 import { matchProductRoute } from 'ish-core/routing/product/product.route';
 
 const routes: Routes = [
@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     matcher: matchCategoryRoute,
     loadChildren: () => import('./category/category-page.module').then(m => m.CategoryPageModule),
+  },
+  {
+    matcher: matchWarehousesRoute,
+    loadChildren: () => import('./warehouses/warehouses.module').then(m => m.WarehousesModule),
   },
   {
     path: '**',
@@ -30,4 +34,4 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
 })
-export class AppLastRoutingModule {}
+export class AppLastRoutingModule { }
